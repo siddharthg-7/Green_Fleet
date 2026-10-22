@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import {
   Calendar, Plus, ArrowUpRight, ArrowRight,
-  TrendingDown, TrendingUp, Ship, Gauge, Fuel, Wind,
-  Radio, Waves, ShieldCheck, CheckCircle2, ChevronRight,
-  Navigation, Anchor
+  Ship, Gauge, Fuel, ShieldCheck, ChevronRight,
+  Navigation, Search, Filter, X
 } from 'lucide-react';
 import {
   BarChart, Bar, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer,
@@ -18,32 +17,33 @@ const fmt = n => Number(n || 0).toLocaleString(undefined, { maximumFractionDigit
 // Default baseline voyage data used when user hasn't calculated a custom voyage yet
 const BASELINE_DATA = {
   vessel_name: 'MV Ocean Pioneer',
-  vessel_type: 'Capesize Bulk / LNG Dual-Fuel',
+  vessel_type: 'Capesize Bulk / Dual-Fuel',
   origin: { port_name: 'Mumbai', port_code: 'INBOM', country: 'India' },
   destination: { port_name: 'Singapore', port_code: 'SGSIN', country: 'Singapore' },
   fuel_litres: 14310.7,
-  co2_kg: 39354.4,
+  co2_kg: 44563.5,
   speed_knots: 12.5,
   distance_km: 4420,
   eta_hours: 191.0,
-  recommended_fuel: 'LNG',
+  recommended_fuel: 'HFO',
   savings_pct: 18.4,
   saved_litres: 3230,
-  saved_usd: 2890,
+  saved_usd: 2875,
   env_score: 94.2,
-  date_range: '22 Oct, 2026 – 30 Oct, 2026',
+  date_range: '9d 4.0h (220.0 hrs)',
+  // Strictly the 5 fuels supported by GreenFleet-Q backend
   fuels: [
-    { name: 'HFO', fuel: 17540, co2: 54620, isBest: false },
-    { name: 'MGO', fuel: 16210, co2: 51200, isBest: false },
-    { name: 'LNG', fuel: 14310, co2: 39350, isBest: true },
-    { name: 'Methanol', fuel: 15100, co2: 42100, isBest: false },
-    { name: 'Ammonia', fuel: 14890, co2: 12050, isBest: false },
+    { name: 'HFO', fuel: 14310.7, co2: 44563.5, costIndex: 14310.7, litresPerTonne: 1.431, isBest: true },
+    { name: 'Methanol', fuel: 12840.0, co2: 17976.0, costIndex: 16692.0, litresPerTonne: 1.284, isBest: false },
+    { name: 'LNG', fuel: 12650.0, co2: 34787.5, costIndex: 15180.0, litresPerTonne: 1.265, isBest: false },
+    { name: 'Ammonia', fuel: 12480.0, co2: 0.0, costIndex: 22464.0, litresPerTonne: 1.248, isBest: false },
+    { name: 'Hydrogen', fuel: 12210.0, co2: 0.0, costIndex: 30525.0, litresPerTonne: 1.221, isBest: false },
   ],
   speed_wave: [
-    { hour: '0h', speed: 11.8 },
+    { hour: '0h', speed: 12.5 },
     { hour: '30h', speed: 12.6 },
-    { hour: '60h', speed: 12.2 },
-    { hour: '90h', speed: 13.1 },
+    { hour: '60h', speed: 12.4 },
+    { hour: '90h', speed: 12.7 },
     { hour: '120h', speed: 12.5 },
     { hour: '150h', speed: 12.4 },
     { hour: '190h', speed: 12.5 },
@@ -101,11 +101,11 @@ const BASELINE_DATA = {
       destination: 'Mumbai (INBOM)',
       date: '08 Oct 2026',
       duration: '54.2 h',
-      fuel_type: 'MGO Low-Sulfur',
+      fuel_type: 'Ammonia',
       speed: '11.8 kn',
       fuel_litres: '6,920 L',
       status: 'Eco-Steaming',
-      status_type: 'success',
+      status_type: 'amber',
       savings: '+16.8%',
       badge_color: 'amber'
     }
@@ -114,13 +114,14 @@ const BASELINE_DATA = {
 
 export default function Overview() {
   const navigate = useNavigate();
-  const { result, selected, scenarioName, loading, error } = useApp();
+  const { result, selected, loading, error } = useApp();
   const [activeMetric, setActiveMetric] = useState('fuel'); // 'fuel' | 'co2'
+  const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('ALL');
 
   // Extract live calculation data if available, or fall back to default baseline
   const o = selected?.optimized || result?.optimized;
   const b = selected?.baseline || result?.baseline;
-  const fp = selected?.fleet_plan || result?.fleet_plan;
   const fuelRows = result?.fuel_comparison || [];
   const bestFuel = fuelRows.find(x => x.recommended) || fuelRows[0];
 
@@ -138,7 +139,7 @@ export default function Overview() {
   const currentFuelType = o?.fuel_type || BASELINE_DATA.recommended_fuel;
 
   // Best recommended fuel from comparison or fallback
-  const recFuelName = bestFuel?.fuel_type || (o?.fuel_type !== 'HFO' ? o?.fuel_type : 'LNG') || BASELINE_DATA.recommended_fuel;
+  const recFuelName = bestFuel?.fuel_type || BASELINE_DATA.recommended_fuel;
 
   const rawSavings = result?.savings?.fuel_percent != null
     ? Number(result.savings.fuel_percent)
@@ -156,35 +157,81 @@ export default function Overview() {
     }
   }
 
-  // Chart data
-  const chartData = hasLiveResult && fuelRows.length > 0
-    ? fuelRows.map(x => ({
+  // Chart data: Map the 5 supported fuels accurately from backend or baseline
+  const chartData = useMemo(() => {
+    if (hasLiveResult && fuelRows.length > 0) {
+      return fuelRows.map(x => ({
         name: x.fuel_type,
         fuel: Math.round(x.predicted_fuel_litres || 0),
         co2: Math.round(x.operational_co2_kg || 0),
-        isBest: x.recommended || x.fuel_type === recFuelName
-      }))
-    : BASELINE_DATA.fuels;
+        costIndex: x.fuel_cost_index != null ? Math.round(x.fuel_cost_index) : null,
+        litresPerTonne: x.fuel_litres_per_tonne != null ? Number(x.fuel_litres_per_tonne) : null,
+        isBest: Boolean(x.recommended || x.fuel_type === recFuelName)
+      }));
+    }
+    return BASELINE_DATA.fuels;
+  }, [hasLiveResult, fuelRows, recFuelName]);
 
-  const speedWaveData = BASELINE_DATA.speed_wave.map((pt, idx) => ({
-    hour: pt.hour,
-    speed: hasLiveResult && o?.speed_knots
-      ? +(o.speed_knots + (Math.sin(idx * 1.2) * 0.4)).toFixed(1)
-      : pt.speed
-  }));
+  const speedWaveData = useMemo(() => {
+    return BASELINE_DATA.speed_wave.map((pt, idx) => ({
+      hour: pt.hour,
+      speed: hasLiveResult && o?.speed_knots
+        ? +(o.speed_knots + (Math.sin(idx * 1.2) * 0.3)).toFixed(1)
+        : pt.speed
+    }));
+  }, [hasLiveResult, o?.speed_knots]);
 
-  const recentList = BASELINE_DATA.recent_optimizations;
-
+  // Overlay position for "Recommended" pill
   const recFuelIndex = chartData.findIndex(d => d.isBest);
   const badgeLeftPercent = recFuelIndex >= 0
     ? Math.round(((recFuelIndex + 0.5) / chartData.length) * 100)
-    : 50;
+    : 10;
+
+  // Table rows: merge live result if available with recent list
+  const allRows = useMemo(() => {
+    const list = [...BASELINE_DATA.recent_optimizations];
+    if (hasLiveResult) {
+      list.unshift({
+        id: 'LIVE-Q1',
+        vessel: vesselName,
+        origin: `${originName} (${originCode})`,
+        destination: `${destName} (${destCode})`,
+        date: 'Today (Live)',
+        duration: `${o?.eta_hours ? o.eta_hours.toFixed(1) : '191.0'} h`,
+        speed: `${currentSpeed} kn`,
+        fuel_type: currentFuelType,
+        fuel_litres: `${currentFuel} L`,
+        status: 'QPSO Optimal',
+        status_type: 'success',
+        savings: savingsPct,
+        badge_color: 'emerald',
+        isLive: true
+      });
+    }
+    return list;
+  }, [hasLiveResult, vesselName, originName, originCode, destName, destCode, o?.eta_hours, currentSpeed, currentFuelType, currentFuel, savingsPct]);
+
+  // Filtered rows for the optimization table
+  const filteredRows = useMemo(() => {
+    return allRows.filter(row => {
+      const q = searchQuery.toLowerCase().trim();
+      const matchesSearch = !q || (
+        row.vessel.toLowerCase().includes(q) ||
+        row.origin.toLowerCase().includes(q) ||
+        row.destination.toLowerCase().includes(q) ||
+        row.fuel_type.toLowerCase().includes(q)
+      );
+
+      const matchesStatus = statusFilter === 'ALL' || row.status === statusFilter;
+      return matchesSearch && matchesStatus;
+    });
+  }, [allRows, searchQuery, statusFilter]);
 
   return (
     <div className="q-overview-container">
       {/* ── Top Header Greeting ── */}
       <div className="q-header-banner">
-        <div>
+        <div className="q-header-text-block">
           <h1 className="q-header-title">Welcome Back, Fleet Commander</h1>
           <p className="q-header-subtitle">
             Autonomous Quantum-Inspired Fleet Operations &amp; Carbon Decision Engine
@@ -192,40 +239,41 @@ export default function Overview() {
         </div>
 
         <div className="q-header-controls">
-          <div className="q-date-pill" title="Active voyage planning schedule window">
-            <Calendar size={14} className="q-date-icon" />
+          <div className="q-date-pill" title="Active voyage schedule duration">
+            <Calendar size={13} className="q-date-icon" />
             <span>{result?.voyage_parameters?.duration_formatted || BASELINE_DATA.date_range}</span>
           </div>
 
           <button className="q-btn-add" onClick={() => navigate('/voyage')} title="Configure new origin, destination & cargo">
-            <Plus size={15} />
+            <Plus size={14} />
             <span>Plan New Voyage</span>
           </button>
         </div>
       </div>
 
-      {/* Baseline / Demo Notification if no user voyage run yet */}
+      {/* ── Compact Benchmark Status Banner ── */}
       {!hasLiveResult && (
-        <div className="q-demo-banner">
-          <div className="q-demo-banner-left">
-            <span className="q-demo-pill">Benchmark Mode</span>
-            <span>
-              Displaying validated benchmark corridor: <strong>{originName} → {destName}</strong> with QPSO Quantum Optimization.
+        <div className="q-benchmark-banner">
+          <div className="q-bb-left">
+            <span className="q-bb-badge">Benchmark Mode</span>
+            <span className="q-bb-text">
+              Active validated corridor: <strong>{originName} ({originCode}) &rarr; {destName} ({destCode})</strong> with QPSO Quantum Optimization.
             </span>
           </div>
-          <span className="q-demo-link" onClick={() => navigate('/voyage')}>
-            Click to configure custom route &rarr;
-          </span>
+          <button className="q-bb-action" onClick={() => navigate('/voyage')} title="Configure origin, destination, vessel & cargo">
+            <span>Configure Custom Route</span>
+            <ArrowRight size={13} />
+          </button>
         </div>
       )}
 
       {error && <div className="error">{error}</div>}
       {loading && <div className="loading">Running quantum-inspired PSO solver…</div>}
 
-      {/* ── Top 3-Column Grid ── */}
+      {/* ── Top 3-Column Operational Grid ── */}
       <div className="q-top-grid">
 
-        {/* ── COLUMN 1: Quixotic Emerald Flagship Card + Quick Stat Tile ── */}
+        {/* ── COLUMN 1: Flagship Deployment + Fuel Saving Tile ── */}
         <div className="q-col-card">
           <div className="q-card-header-row">
             <div className="q-card-title-wrap">
@@ -242,11 +290,14 @@ export default function Overview() {
                 <Ship size={16} />
                 <span className="q-ec-vessel-name">{vesselName}</span>
               </div>
-              <Radio size={16} className="q-ec-radar" />
+              <div className="q-radar-indicator" title="Active AIS telemetry connection">
+                <span className="q-radar-dot" />
+                <span className="q-radar-ring" />
+              </div>
             </div>
 
-            <div>
-              <div className="q-ec-label">Predicted Fuel Consumption</div>
+            <div className="q-ec-mid">
+              <div className="q-ec-label">PREDICTED FUEL CONSUMPTION</div>
               <div className="q-ec-value">
                 {currentFuel} <span className="q-ec-unit">Litres</span>
               </div>
@@ -264,14 +315,14 @@ export default function Overview() {
             </div>
           </div>
 
-          {/* Quick Stat: Fuel Savings vs HFO */}
+          {/* Quick Stat: Fuel Savings vs Baseline */}
           <div className="q-quick-stat-card">
             <div className="q-qs-header">
               <span className="q-qs-label">Fuel Saving vs Baseline</span>
               <span className="q-badge-pill green">{savingsPct}</span>
             </div>
             <div className="q-qs-value">
-              +{savedLitres.toLocaleString()} <span style={{ fontSize: '14px', fontWeight: 600, color: '#6a7f8e' }}>L</span>
+              +{savedLitres.toLocaleString()} <span className="q-qs-unit">L</span>
             </div>
             <div className="q-qs-sub">
               ~${(savedLitres * 0.89).toLocaleString(undefined, { maximumFractionDigits: 0 })} operational voyage savings
@@ -279,25 +330,29 @@ export default function Overview() {
           </div>
         </div>
 
-        {/* ── COLUMN 2: Fuel & Emissions Intelligence (Engagement Rate Style) ── */}
+        {/* ── COLUMN 2: Fuel & Emissions Intelligence (5-Fuel Comparison) ── */}
         <div className="q-col-chart">
           <div className="q-card-header-row">
             <div className="q-card-title-wrap">
-              <Fuel size={16} className="q-title-icon" />
+              <Fuel size={15} className="q-title-icon" />
               <span className="q-card-title">Fuel &amp; Emissions Intelligence</span>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div className="q-chart-controls">
               <div className="q-pill-toggle">
                 <button
+                  type="button"
                   className={activeMetric === 'fuel' ? 'active' : ''}
                   onClick={() => setActiveMetric('fuel')}
+                  title="Compare predicted fuel consumption in Litres"
                 >
                   Fuel (L)
                 </button>
                 <button
+                  type="button"
                   className={activeMetric === 'co2' ? 'active' : ''}
                   onClick={() => setActiveMetric('co2')}
+                  title="Compare operational CO2 emissions in Kilograms"
                 >
                   CO₂ (kg)
                 </button>
@@ -310,12 +365,13 @@ export default function Overview() {
           </div>
 
           <div className="q-bar-chart-wrap">
+            {/* Recommended fuel pill pinned above the corresponding bar */}
             <div className="q-chart-badge-overlay" style={{ left: `${badgeLeftPercent}%` }}>
               Recommended: {recFuelName}
             </div>
 
             <ResponsiveContainer width="100%" height={235}>
-              <BarChart data={chartData} margin={{ top: 28, right: 12, left: -16, bottom: 0 }}>
+              <BarChart data={chartData} margin={{ top: 32, right: 12, left: -16, bottom: 0 }}>
                 <XAxis
                   dataKey="name"
                   tick={{ fill: '#6a7f8e', fontSize: 11, fontWeight: 600 }}
@@ -329,28 +385,36 @@ export default function Overview() {
                   tickFormatter={val => `${Math.round(val / 1000)}k`}
                 />
                 <Tooltip
-                  cursor={{ fill: 'rgba(8, 184, 135, 0.05)' }}
+                  cursor={{ fill: 'rgba(8, 184, 135, 0.04)' }}
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       const d = payload[0].payload;
                       return (
-                        <div style={{
-                          background: '#ffffff',
-                          border: '1px solid #dce6eb',
-                          borderRadius: '12px',
-                          padding: '10px 14px',
-                          boxShadow: '0 8px 24px rgba(22, 52, 67, 0.12)',
-                          fontSize: '12px'
-                        }}>
-                          <div style={{ fontWeight: 800, color: '#10212d', marginBottom: '4px' }}>
-                            {d.name} {d.isBest && '★ (Recommended)'}
+                        <div className="q-chart-tooltip">
+                          <div className="q-tooltip-header">
+                            <span className="q-tooltip-title">{d.name}</span>
+                            {d.isBest && <span className="q-tooltip-badge">★ Recommended</span>}
                           </div>
-                          <div style={{ color: '#08b887', fontWeight: 700 }}>
-                            Fuel: {d.fuel.toLocaleString()} L
+                          <div className="q-tooltip-row">
+                            <span className="q-tooltip-label">Fuel Consumption:</span>
+                            <strong className="q-tooltip-val emerald">{fmt(d.fuel)} L</strong>
                           </div>
-                          <div style={{ color: '#d97706', fontWeight: 600, fontSize: '11px' }}>
-                            CO₂: {d.co2.toLocaleString()} kg
+                          <div className="q-tooltip-row">
+                            <span className="q-tooltip-label">Operational CO₂:</span>
+                            <strong className="q-tooltip-val amber">{fmt(d.co2)} kg</strong>
                           </div>
+                          {d.costIndex != null && (
+                            <div className="q-tooltip-row">
+                              <span className="q-tooltip-label">Fuel Cost Index:</span>
+                              <strong className="q-tooltip-val">${fmt(d.costIndex)}</strong>
+                            </div>
+                          )}
+                          {d.litresPerTonne != null && (
+                            <div className="q-tooltip-row">
+                              <span className="q-tooltip-label">Per Cargo Tonne:</span>
+                              <strong className="q-tooltip-val">{d.litresPerTonne.toFixed(3)} L/t</strong>
+                            </div>
+                          )}
                         </div>
                       );
                     }
@@ -359,13 +423,13 @@ export default function Overview() {
                 />
                 <Bar
                   dataKey={activeMetric === 'fuel' ? 'fuel' : 'co2'}
-                  radius={[14, 14, 14, 14]}
+                  radius={[12, 12, 12, 12]}
                   barSize={32}
                 >
                   {chartData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={entry.isBest ? '#08b887' : '#93d8be'}
+                      fill={entry.isBest ? '#08b887' : '#8cd4ba'}
                     />
                   ))}
                 </Bar>
@@ -377,7 +441,7 @@ export default function Overview() {
         {/* ── COLUMN 3: Transit Speed Wave + Environmental Index ── */}
         <div className="q-col-right">
 
-          {/* Optimal Speed Wave Card (Payment Goal Wave Style) */}
+          {/* Optimal Speed Wave Card */}
           <div className="q-wave-card">
             <div className="q-card-header-row" style={{ marginBottom: 4 }}>
               <span className="q-card-title">Optimal Transit Speed</span>
@@ -398,7 +462,7 @@ export default function Overview() {
                 <AreaChart data={speedWaveData} margin={{ top: 2, right: 0, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="waveFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#08b887" stopOpacity={0.25} />
+                      <stop offset="0%" stopColor="#08b887" stopOpacity={0.22} />
                       <stop offset="100%" stopColor="#08b887" stopOpacity={0.0} />
                     </linearGradient>
                   </defs>
@@ -416,7 +480,7 @@ export default function Overview() {
                     type="monotone"
                     dataKey="speed"
                     stroke="#08b887"
-                    strokeWidth={2.5}
+                    strokeWidth={2.2}
                     fillOpacity={1}
                     fill="url(#waveFill)"
                   />
@@ -436,7 +500,7 @@ export default function Overview() {
             </div>
           </div>
 
-          {/* Environmental Index Score (Amount of Credit Style) */}
+          {/* Environmental Index Score */}
           <div className="q-env-card">
             <div className="q-env-header">
               <ShieldCheck size={16} className="q-env-icon" />
@@ -465,18 +529,51 @@ export default function Overview() {
 
       </div>
 
-      {/* ── Bottom Section: Recent Voyage Optimizations Table (Payment History style) ── */}
+      {/* ── Bottom Section: Recent Voyage Optimizations Table ── */}
       <div className="q-table-card">
-        <div className="q-card-header-row">
+        <div className="q-table-header-row">
           <div className="q-table-header-block">
             <h3 className="q-table-title">Recent Voyage Optimizations</h3>
             <p className="q-table-sub">
               Live corridor tracking with automated weather routing &amp; quantum convergence
             </p>
           </div>
-          <button className="q-icon-btn" onClick={() => navigate('/scenarios')} title="Compare Saved Scenarios">
-            <ArrowUpRight size={14} />
-          </button>
+
+          <div className="q-table-toolbar">
+            {/* Functional search input */}
+            <div className="q-search-box">
+              <Search size={14} className="q-search-icon" />
+              <input
+                type="text"
+                placeholder="Search vessel, corridor or fuel…"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                aria-label="Filter voyage optimizations"
+              />
+              {searchQuery && (
+                <button className="q-search-clear" onClick={() => setSearchQuery('')} aria-label="Clear search">
+                  <X size={12} />
+                </button>
+              )}
+            </div>
+
+            {/* Status filter tabs */}
+            <div className="q-status-filter-pills">
+              {['ALL', 'QPSO Optimal', 'In Transit', 'Eco-Steaming'].map(status => (
+                <button
+                  key={status}
+                  className={`q-filter-pill ${statusFilter === status ? 'active' : ''}`}
+                  onClick={() => setStatusFilter(status)}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
+
+            <button className="q-icon-btn" onClick={() => navigate('/scenarios')} title="Compare Saved Scenarios">
+              <ArrowUpRight size={14} />
+            </button>
+          </div>
         </div>
 
         <div className="q-table-responsive">
@@ -492,35 +589,60 @@ export default function Overview() {
               </tr>
             </thead>
             <tbody>
-              {recentList.map((row) => (
-                <tr key={row.id}>
-                  <td>
-                    <div className="q-route-cell">
-                      <div className={`q-route-icon-badge ${row.badge_color}`}>
-                        <Ship size={15} />
+              {filteredRows.length > 0 ? (
+                filteredRows.map((row) => (
+                  <tr
+                    key={row.id}
+                    onClick={() => navigate('/routes')}
+                    className="q-table-row-clickable"
+                    title="Click to view corridor breakdown"
+                  >
+                    <td>
+                      <div className="q-route-cell">
+                        <div className={`q-route-icon-badge ${row.badge_color}`}>
+                          <Ship size={15} />
+                        </div>
+                        <div>
+                          <div className="q-route-name-row">
+                            <span className="q-route-name">{row.vessel}</span>
+                            {row.isLive && <span className="q-live-tag">LIVE</span>}
+                          </div>
+                          <span className="q-route-sub">{row.origin} &rarr; {row.destination}</span>
+                        </div>
                       </div>
-                      <div>
-                        <span className="q-route-name">{row.vessel}</span>
-                        <span className="q-route-sub">{row.origin} &rarr; {row.destination}</span>
-                      </div>
+                    </td>
+                    <td>{row.date}</td>
+                    <td className="q-tabular-num">{row.duration} ({row.speed})</td>
+                    <td>
+                      <span className={`q-status-chip ${row.status_type}`}>
+                        <span className="q-dot" />
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="q-tabular-num">
+                      <strong>{row.fuel_litres}</strong> <span className="q-fuel-type-sub">({row.fuel_type})</span>
+                    </td>
+                    <td className="q-tabular-num">
+                      <span className="q-savings-tag">{row.savings}</span>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={6} className="q-empty-table-cell">
+                    <div className="q-empty-table-wrap">
+                      <Filter size={18} />
+                      <span>No voyage optimizations match &quot;{searchQuery}&quot;</span>
+                      <button
+                        className="q-btn-clear-filter"
+                        onClick={() => { setSearchQuery(''); setStatusFilter('ALL'); }}
+                      >
+                        Reset Filters
+                      </button>
                     </div>
                   </td>
-                  <td>{row.date}</td>
-                  <td>{row.duration} ({row.speed})</td>
-                  <td>
-                    <span className={`q-status-chip ${row.status_type}`}>
-                      <span className="q-dot" />
-                      {row.status}
-                    </span>
-                  </td>
-                  <td>
-                    <strong>{row.fuel_litres}</strong> <span style={{ color: '#80909b', fontSize: '11px' }}>({row.fuel_type})</span>
-                  </td>
-                  <td>
-                    <span className="q-savings-tag">{row.savings}</span>
-                  </td>
                 </tr>
-              ))}
+              )}
             </tbody>
           </table>
         </div>

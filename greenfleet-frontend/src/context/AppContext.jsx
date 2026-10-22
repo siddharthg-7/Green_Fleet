@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { optimize, scenario as runScenarioApi } from '../api';
+import { API_BASE, optimize, scenario as runScenarioApi } from '../api';
 
 const AppContext = createContext(null);
 const STORAGE_KEY = 'greenfleet-session';
@@ -45,7 +45,7 @@ export function AppProvider({ children }) {
 
   // Ping backend on mount
   React.useEffect(() => {
-    fetch('/api/health')
+    fetch(`${API_BASE}/health`)
       .then(r => r.json())
       .then(d => setSystemStatus({ backend: true, ml: !!d.ports_loaded, weather: true }))
       .catch(() => setSystemStatus({ backend: false, ml: false, weather: false }));

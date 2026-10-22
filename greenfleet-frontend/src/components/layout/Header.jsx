@@ -22,10 +22,10 @@ export default function Header() {
   const meta = PAGE_META[location.pathname] || { title: 'GreenFleet', sub: '' };
 
   const voyageLabel = result
-    ? `${result.origin?.port_name} → ${result.destination?.port_name}`
+    ? `${result.origin?.port_name || 'Mumbai'} → ${result.destination?.port_name || 'Singapore'}`
     : form
     ? 'Voyage configured'
-    : 'No voyage set';
+    : 'Mumbai → Singapore';
 
   return (
     <header className="top-header">
@@ -34,29 +34,29 @@ export default function Header() {
         <p className="top-header-sub">{meta.sub}</p>
       </div>
       <div className="top-header-right">
-        <div className="voyage-pill">
-          <span className={`status-dot ${result ? 'green' : 'amber'}`} />
+        <div className="voyage-pill" title="Current active corridor">
+          <span className="status-dot green" />
           <span className="voyage-pill-label">{voyageLabel}</span>
         </div>
         <button
           className="btn-run"
           onClick={() => navigate('/voyage')}
           disabled={loading}
+          title="Re-run optimization"
         >
           {loading
-            ? <><Loader2 size={15} className="spin" /> Running…</>
-            : <><Play size={15} /> {result ? 'Re-run' : 'Plan Voyage'}</>
+            ? <><Loader2 size={14} className="spin" /> Running…</>
+            : <><Play size={14} /> Re-run</>
           }
         </button>
-        {(result || form) && (
-          <button
-            className="btn-outline"
-            onClick={() => { resetSession(); navigate('/voyage'); }}
-            disabled={loading}
-          >
-            <Plus size={15} /> New Voyage
-          </button>
-        )}
+        <button
+          className="btn-header-new"
+          onClick={() => { resetSession(); navigate('/voyage'); }}
+          disabled={loading}
+          title="Configure a new voyage"
+        >
+          <Plus size={14} /> New Voyage
+        </button>
       </div>
     </header>
   );

@@ -1,12 +1,13 @@
 /* ==========================================================================
-   Quixotic Dashboard System — Applied to GreenFleet-Q Overview
-   Design source: Quixotic reference image with Emerald Green Maritime Palette
+   GreenFleet-Q Dashboard System — Modern Maritime Decision Support
+   Aesthetic: White cards, pale blue-gray background, dark navy typography,
+   emerald-green primary accents, consistent spacing and data hierarchy.
    ========================================================================== */
 
 .q-overview-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
@@ -18,24 +19,30 @@
 .q-header-banner {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
-  padding: 4px 0 8px;
+  gap: 14px;
+  padding: 0 0 2px;
+}
+
+.q-header-text-block {
+  min-width: 0;
 }
 
 .q-header-title {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: #10212d;
-  margin: 0 0 4px;
+  margin: 0 0 3px;
+  line-height: 1.2;
 }
 
 .q-header-subtitle {
   font-size: 13px;
   color: #6a7f8e;
   margin: 0;
+  font-weight: 500;
 }
 
 .q-header-controls {
@@ -48,17 +55,17 @@
 .q-date-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   background: #ffffff;
   border: 1px solid #dce6eb;
   border-radius: 999px;
-  padding: 8px 16px;
+  padding: 7px 15px;
   font-size: 12px;
   font-weight: 600;
   color: #3b5060;
   box-shadow: 0 2px 6px rgba(22, 52, 67, 0.04);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
 }
 
 .q-date-pill:hover {
@@ -77,13 +84,13 @@
   background: #ffffff;
   border: 1px solid #dce6eb;
   border-radius: 999px;
-  padding: 8px 18px;
+  padding: 7px 16px;
   font-size: 12px;
   font-weight: 700;
   color: #10212d;
   box-shadow: 0 2px 6px rgba(22, 52, 67, 0.04);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
 }
 
 .q-btn-add:hover {
@@ -94,49 +101,76 @@
   transform: translateY(-1px);
 }
 
-/* Demo Notice Banner */
-.q-demo-banner {
+/* ── Compact Benchmark Status Banner ── */
+.q-benchmark-banner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: #ecfdf5;
-  border: 1px solid rgba(8, 184, 135, 0.35);
-  border-radius: 14px;
-  padding: 10px 18px;
+  background: #f0fdf9;
+  border: 1px solid rgba(8, 184, 135, 0.3);
+  border-radius: 12px;
+  padding: 7px 16px;
   font-size: 12px;
   color: #065f46;
+  transition: all 0.2s ease;
 }
 
-.q-demo-banner-left {
+.q-bb-left {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
-.q-demo-pill {
+.q-bb-badge {
   background: #08b887;
   color: #ffffff;
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 800;
-  padding: 2px 8px;
+  padding: 2px 7px;
   border-radius: 999px;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  flex-shrink: 0;
 }
 
-.q-demo-link {
-  font-weight: 700;
+.q-bb-text {
+  color: #1e3a47;
+  font-size: 12px;
+}
+
+.q-bb-text strong {
+  color: #10212d;
+}
+
+.q-bb-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
   color: #08b887;
-  text-decoration: underline;
+  font-size: 11.5px;
+  font-weight: 750;
   cursor: pointer;
+  white-space: nowrap;
+  padding: 3px 8px;
+  border-radius: 6px;
+  transition: all 0.15s ease;
 }
 
-/* ── Top Grid (3 Columns) ── */
+.q-bb-action:hover {
+  background: rgba(8, 184, 135, 0.1);
+  transform: translateX(2px);
+}
+
+/* ── Top Operational 3-Column Grid ── */
 .q-top-grid {
   display: grid;
-  grid-template-columns: 310px 1.4fr 1fr;
-  gap: 18px;
+  grid-template-columns: 310px 1.45fr 1fr;
+  gap: 16px;
+  align-items: stretch;
 }
 
 @media (max-width: 1240px) {
@@ -145,12 +179,9 @@
   }
   .q-col-right {
     grid-column: 1 / -1;
-    display: grid;
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-  .q-env-card {
-    margin-top: 0 !important;
+    gap: 16px;
   }
 }
 
@@ -159,22 +190,22 @@
     grid-template-columns: 1fr;
   }
   .q-col-right {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
   }
 }
 
-/* Card Header Row */
+/* Common Card Header Row */
 .q-card-header-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .q-card-title-wrap {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
 }
 
 .q-card-title {
@@ -191,14 +222,14 @@
 .q-icon-btn {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   border: 1px solid #e2eaee;
   background: #f7fbfc;
   color: #6a7f8e;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
 }
 
 .q-icon-btn:hover {
@@ -208,7 +239,7 @@
   transform: translate(1px, -1px);
 }
 
-/* ── Column 1: The Quixotic Emerald Flagship Card ── */
+/* ── COLUMN 1: Quixotic Emerald Flagship Card ── */
 .q-col-card {
   display: flex;
   flex-direction: column;
@@ -216,22 +247,22 @@
 
 .q-emerald-card {
   position: relative;
-  background: linear-gradient(135deg, #047857 0%, #08b887 60%, #0d9488 100%);
-  border-radius: 22px;
-  padding: 22px 24px;
+  background: linear-gradient(135deg, #047857 0%, #08b887 55%, #0d9488 100%);
+  border-radius: 20px;
+  padding: 20px 22px;
   color: #ffffff;
-  box-shadow: 0 16px 36px rgba(8, 184, 135, 0.28);
+  box-shadow: 0 14px 32px rgba(8, 184, 135, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 190px;
+  min-height: 194px;
   overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .q-emerald-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 20px 44px rgba(8, 184, 135, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(8, 184, 135, 0.32);
 }
 
 .q-emerald-card::before {
@@ -241,7 +272,7 @@
   right: -40px;
   width: 130px;
   height: 130px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -255,7 +286,7 @@
 .q-ec-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
 }
 
 .q-ec-vessel-name {
@@ -265,16 +296,54 @@
   text-transform: uppercase;
 }
 
-.q-ec-radar {
-  opacity: 0.85;
+/* Animated Radar Pulse Indicator */
+.q-radar-indicator {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  display: grid;
+  place-items: center;
+}
+
+.q-radar-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  z-index: 2;
+}
+
+.q-radar-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  animation: qRadarPulse 2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes qRadarPulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .q-radar-ring {
+    animation: none;
+    opacity: 0.5;
+  }
+}
+
+.q-ec-mid {
+  margin: 10px 0 12px;
 }
 
 .q-ec-label {
-  font-size: 10px;
+  font-size: 9.5px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.8);
-  margin-top: 14px;
+  letter-spacing: 0.9px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
+  margin-bottom: 2px;
 }
 
 .q-ec-value {
@@ -283,13 +352,12 @@
   letter-spacing: -0.03em;
   color: #ffffff;
   line-height: 1.1;
-  margin: 3px 0 16px;
 }
 
 .q-ec-unit {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
-  opacity: 0.85;
+  opacity: 0.88;
 }
 
 .q-ec-footer {
@@ -304,8 +372,9 @@
 .q-ec-route {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   font-weight: 700;
+  letter-spacing: 0.3px;
 }
 
 .q-ec-arrow {
@@ -322,12 +391,12 @@
   white-space: nowrap;
 }
 
-/* Quick Stat Card below Emerald Card (Matching "Weekly Revenue +3,945 USD") */
+/* Quick Stat Card below Emerald Card */
 .q-quick-stat-card {
   background: #ffffff;
   border: 1px solid #e2eaee;
   border-radius: 18px;
-  padding: 16px 20px;
+  padding: 15px 20px;
   margin-top: 14px;
   box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
 }
@@ -336,7 +405,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .q-qs-label {
@@ -364,6 +433,13 @@
   letter-spacing: -0.03em;
   color: #10212d;
   margin-bottom: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.q-qs-unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6a7f8e;
 }
 
 .q-qs-sub {
@@ -371,15 +447,21 @@
   color: #80909b;
 }
 
-/* ── Column 2: Fuel Consumption & Emissions (Engagement Rate style) ── */
+/* ── COLUMN 2: Fuel Consumption & Emissions ── */
 .q-col-chart {
   background: #ffffff;
   border: 1px solid #e2eaee;
-  border-radius: 22px;
-  padding: 22px 24px;
-  box-shadow: 0 4px 20px rgba(22, 52, 67, 0.05);
+  border-radius: 20px;
+  padding: 18px 22px 14px;
+  box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
   display: flex;
   flex-direction: column;
+}
+
+.q-chart-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .q-pill-toggle {
@@ -396,39 +478,41 @@
   color: #6a7f8e;
   font-size: 11px;
   font-weight: 700;
-  padding: 5px 12px;
+  padding: 4px 11px;
   border-radius: 999px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
 }
 
 .q-pill-toggle button.active {
   background: #08b887;
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(8, 184, 135, 0.3);
+  box-shadow: 0 2px 8px rgba(8, 184, 135, 0.28);
 }
 
 .q-bar-chart-wrap {
   flex: 1;
-  min-height: 230px;
+  min-height: 235px;
   position: relative;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .q-chart-badge-overlay {
   position: absolute;
-  top: 10px;
-  left: 50%;
+  top: 6px;
+  left: 10%;
   transform: translateX(-50%);
   background: #08b887;
   color: #ffffff;
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 800;
   padding: 3px 9px;
   border-radius: 999px;
   box-shadow: 0 3px 10px rgba(8, 184, 135, 0.35);
   pointer-events: none;
   z-index: 5;
+  white-space: nowrap;
+  transition: left 0.3s ease;
 }
 
 .q-chart-badge-overlay::after {
@@ -444,7 +528,65 @@
   border-top: 4px solid #08b887;
 }
 
-/* ── Column 3: Speed Wave & Environmental Score ── */
+/* Tooltip Styling */
+.q-chart-tooltip {
+  background: #ffffff;
+  border: 1px solid #dce6eb;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 8px 24px rgba(22, 52, 67, 0.12);
+  font-size: 11.5px;
+  min-width: 190px;
+}
+
+.q-tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #f0f4f7;
+  padding-bottom: 4px;
+}
+
+.q-tooltip-title {
+  font-weight: 800;
+  color: #10212d;
+  font-size: 12.5px;
+}
+
+.q-tooltip-badge {
+  font-size: 9px;
+  font-weight: 750;
+  color: #08b887;
+  background: #ecfdf5;
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+
+.q-tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 2.5px 0;
+  font-size: 11px;
+}
+
+.q-tooltip-label {
+  color: #6a7f8e;
+}
+
+.q-tooltip-val.emerald {
+  color: #08b887;
+  font-weight: 750;
+}
+
+.q-tooltip-val.amber {
+  color: #d97706;
+  font-weight: 650;
+}
+
+/* ── COLUMN 3: Transit Speed Wave + Environmental Index ── */
 .q-col-right {
   display: flex;
   flex-direction: column;
@@ -454,13 +596,13 @@
 .q-wave-card {
   background: #ffffff;
   border: 1px solid #e2eaee;
-  border-radius: 20px;
-  padding: 18px 20px 16px;
+  border-radius: 18px;
+  padding: 16px 20px 14px;
   box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
 }
 
 .q-wave-top {
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .q-wave-stat-label {
@@ -475,10 +617,11 @@
   letter-spacing: -0.03em;
   color: #10212d;
   line-height: 1.1;
+  font-variant-numeric: tabular-nums;
 }
 
 .q-wave-unit {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #80909b;
 }
@@ -486,7 +629,7 @@
 .q-wave-chart-wrap {
   width: 100%;
   height: 75px;
-  margin: 4px 0 10px;
+  margin: 4px 0 8px;
 }
 
 .q-wave-actions {
@@ -500,12 +643,12 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  padding: 7px 12px;
+  padding: 6.5px 12px;
   border-radius: 999px;
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
 }
 
 .q-action-btn.primary {
@@ -535,8 +678,8 @@
 .q-env-card {
   background: #ffffff;
   border: 1px solid #e2eaee;
-  border-radius: 20px;
-  padding: 16px 20px;
+  border-radius: 18px;
+  padding: 15px 20px;
   box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
 }
 
@@ -547,7 +690,7 @@
   font-size: 11.5px;
   font-weight: 700;
   color: #6a7f8e;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .q-env-icon {
@@ -558,7 +701,7 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .q-env-num {
@@ -566,10 +709,11 @@
   font-weight: 900;
   letter-spacing: -0.03em;
   color: #10212d;
+  font-variant-numeric: tabular-nums;
 }
 
 .q-env-num small {
-  font-size: 13px;
+  font-size: 12.5px;
   color: #80909b;
   font-weight: 600;
 }
@@ -577,13 +721,13 @@
 .q-env-fleet-row {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   border-top: 1px solid #f0f4f7;
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 .q-fleet-label {
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -600,7 +744,7 @@
   background: #eef7fa;
   border: 1px solid #dce6eb;
   border-radius: 999px;
-  padding: 2px 9px;
+  padding: 2px 8px;
   font-size: 10px;
   font-weight: 700;
   color: #3b5060;
@@ -616,13 +760,22 @@
 .q-table-card {
   background: #ffffff;
   border: 1px solid #e2eaee;
-  border-radius: 22px;
-  padding: 22px 24px;
-  box-shadow: 0 4px 20px rgba(22, 52, 67, 0.05);
+  border-radius: 20px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
+}
+
+.q-table-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 14px;
 }
 
 .q-table-header-block {
-  margin-bottom: 14px;
+  min-width: 0;
 }
 
 .q-table-title {
@@ -639,6 +792,88 @@
   margin: 0;
 }
 
+.q-table-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.q-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.q-search-icon {
+  position: absolute;
+  left: 9px;
+  color: #80909b;
+  pointer-events: none;
+}
+
+.q-search-box input {
+  background: #f7fbfc;
+  border: 1px solid #dce6eb;
+  border-radius: 999px;
+  padding: 5.5px 26px 5.5px 28px;
+  font-size: 11px;
+  color: #10212d;
+  outline: none;
+  width: 190px;
+  transition: all 0.18s ease;
+  font-family: inherit;
+}
+
+.q-search-box input:focus {
+  background: #ffffff;
+  border-color: #08b887;
+  box-shadow: 0 0 0 2px rgba(8, 184, 135, 0.14);
+  width: 220px;
+}
+
+.q-search-clear {
+  position: absolute;
+  right: 7px;
+  background: transparent;
+  border: none;
+  color: #80909b;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  padding: 2px;
+}
+
+.q-search-clear:hover {
+  color: #10212d;
+}
+
+.q-status-filter-pills {
+  display: flex;
+  gap: 2px;
+  background: #eef7fa;
+  padding: 2px;
+  border-radius: 999px;
+}
+
+.q-filter-pill {
+  border: none;
+  background: transparent;
+  color: #6a7f8e;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.q-filter-pill.active {
+  background: #ffffff;
+  color: #10212d;
+  box-shadow: 0 2px 6px rgba(22, 52, 67, 0.08);
+}
+
 .q-table-responsive {
   overflow-x: auto;
 }
@@ -646,13 +881,13 @@
 .q-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 12.5px;
+  font-size: 12px;
   text-align: left;
 }
 
 .q-table th {
-  padding: 10px 14px;
-  font-size: 10.5px;
+  padding: 9px 12px;
+  font-size: 10px;
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -662,7 +897,7 @@
 }
 
 .q-table td {
-  padding: 13px 14px;
+  padding: 11px 12px;
   border-bottom: 1px solid #f4f7f9;
   color: #10212d;
   white-space: nowrap;
@@ -673,19 +908,40 @@
   border-bottom: none;
 }
 
-.q-table tr:hover td {
+.q-table-row-clickable {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.q-table-row-clickable:hover td {
   background: #f7fbfc;
 }
 
 .q-route-cell {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+}
+
+.q-route-name-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.q-live-tag {
+  background: #08b887;
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
 }
 
 .q-route-icon-badge {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -721,6 +977,15 @@
   color: #80909b;
 }
 
+.q-tabular-num {
+  font-variant-numeric: tabular-nums;
+}
+
+.q-fuel-type-sub {
+  color: #80909b;
+  font-size: 11px;
+}
+
 /* Status Chips */
 .q-status-chip {
   display: inline-flex;
@@ -728,7 +993,7 @@
   gap: 5px;
   padding: 3px 9px;
   border-radius: 999px;
-  font-size: 10.5px;
+  font-size: 10px;
   font-weight: 750;
 }
 
@@ -750,25 +1015,63 @@
   border: 1px solid #dce2e6;
 }
 
+.q-status-chip.amber {
+  background: #fffbeb;
+  color: #d97706;
+  border: 1px solid rgba(217, 119, 6, 0.25);
+}
+
 .q-dot {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: currentColor;
 }
 
-/* Savings badge */
 .q-savings-tag {
   font-weight: 750;
   color: #08b887;
 }
 
-/* Quick Nav Footer */
+/* Empty Table State */
+.q-empty-table-cell {
+  text-align: center;
+  padding: 28px 12px !important;
+}
+
+.q-empty-table-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #6a7f8e;
+  font-size: 12px;
+}
+
+.q-btn-clear-filter {
+  background: #ecfdf5;
+  border: 1px solid rgba(8, 184, 135, 0.3);
+  color: #08b887;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 4px 12px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.15s ease;
+}
+
+.q-btn-clear-filter:hover {
+  background: #08b887;
+  color: #ffffff;
+}
+
+/* ── Quick Navigation Pill Strip ── */
 .q-quicknav-strip {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
-  padding-top: 4px;
+  padding-top: 2px;
 }
 
 .q-nav-pill-btn {
@@ -778,13 +1081,13 @@
   background: #ffffff;
   border: 1px solid #dce6eb;
   border-radius: 999px;
-  padding: 8px 16px;
-  font-size: 12px;
+  padding: 7px 14px;
+  font-size: 11.5px;
   font-weight: 700;
   color: #3b5060;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(22, 52, 67, 0.03);
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
 }
 
 .q-nav-pill-btn:hover {
