@@ -167,7 +167,7 @@ export default function ScenarioSimulation() {
               <div className="opt-result-item"><span>CO₂ Emissions</span><b>{fmt(o?.co2_kg)} kg</b></div>
               <div className="opt-result-item"><span>ETA</span><b>{o?.eta_hours} h</b></div>
               <div className="opt-result-item"><span>Fuel Cost</span><b>{fmt(o?.fuel_cost)}</b></div>
-              <div className="opt-result-item"><span>Schedule</span><b style={{ color: '#00c896' }}>On Time</b></div>
+              <div className="opt-result-item"><span>Schedule</span><b style={{ color: '#0f6b64' }}>On Time</b></div>
             </div>
           </div>
 
@@ -176,13 +176,13 @@ export default function ScenarioSimulation() {
             <div className="section-heading"><div><h2>Baseline vs Scenario Comparison</h2></div></div>
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={compData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#1e3448" />
-                <XAxis dataKey="name" tick={{ fill: '#8ea7b3', fontSize: 11 }} />
-                <YAxis tick={{ fill: '#8ea7b3', fontSize: 11 }} />
-                <Tooltip contentStyle={{ background: '#0d1f35', border: '1px solid #1e3448', borderRadius: 8 }} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e5ded3" />
+                <XAxis dataKey="name" tick={{ fill: '#7d8e98', fontSize: 11 }} />
+                <YAxis tick={{ fill: '#7d8e98', fontSize: 11 }} />
+                <Tooltip contentStyle={{ background: '#fdfbf7', border: '1px solid #e5ded3', color: '#16242b', borderRadius: 8 }} />
                 <Legend />
-                <Bar dataKey="baseline" name="Baseline" fill="#4a7c8e" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="scenario" name={scenarioName} fill="#00c896" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="baseline" name="Baseline" fill="#8ca0a8" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="scenario" name={scenarioName} fill="#0f6b64" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </div>

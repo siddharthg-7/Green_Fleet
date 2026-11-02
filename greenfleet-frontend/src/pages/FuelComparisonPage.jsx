@@ -11,7 +11,7 @@ import {
 const fmt = n => Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 });
 
 const CHART_STYLE = {
-  contentStyle: { background: '#0d1f35', border: '1px solid #1e3448', borderRadius: 8, color: '#e0eaf0' },
+  contentStyle: { background: '#fdfbf7', border: '1px solid #e5ded3', borderRadius: 8, color: '#16242b' },
 };
 
 function NoData({ navigate }) {
@@ -43,7 +43,7 @@ export default function FuelComparisonPage() {
     reduction: +Math.abs(x.co2_reduction_vs_hfo_percent || 0).toFixed(1),
   }));
 
-  const tickStyle = { fill: '#8ea7b3', fontSize: 11 };
+  const tickStyle = { fill: '#7d8e98', fontSize: 11 };
 
   return (
     <div className="page-fuel">
@@ -65,11 +65,11 @@ export default function FuelComparisonPage() {
               <h4>⛽ Predicted Fuel Consumption (L)</h4>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e3448" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5ded3" />
                   <XAxis dataKey="name" tick={tickStyle} />
                   <YAxis tick={tickStyle} />
                   <Tooltip {...CHART_STYLE} />
-                  <Bar dataKey="fuel" name="Fuel (L)" fill="#00c896" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="fuel" name="Fuel (L)" fill="#0f6b64" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -78,11 +78,11 @@ export default function FuelComparisonPage() {
               <h4>💰 Fuel Cost Index</h4>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e3448" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5ded3" />
                   <XAxis dataKey="name" tick={tickStyle} />
                   <YAxis tick={tickStyle} />
                   <Tooltip {...CHART_STYLE} />
-                  <Bar dataKey="cost" name="Cost Index" fill="#f59e0b" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="cost" name="Cost Index" fill="#ff6f59" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -91,11 +91,11 @@ export default function FuelComparisonPage() {
               <h4>🌿 CO₂ Emissions (kg)</h4>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e3448" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5ded3" />
                   <XAxis dataKey="name" tick={tickStyle} />
                   <YAxis tick={tickStyle} />
                   <Tooltip {...CHART_STYLE} />
-                  <Bar dataKey="co2" name="CO₂ (kg)" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="co2" name="CO₂ (kg)" fill="#d9483b" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -104,11 +104,11 @@ export default function FuelComparisonPage() {
               <h4>📉 CO₂ Reduction vs HFO (%)</h4>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e3448" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5ded3" />
                   <XAxis dataKey="name" tick={tickStyle} />
                   <YAxis tick={tickStyle} />
                   <Tooltip {...CHART_STYLE} />
-                  <Bar dataKey="reduction" name="Reduction %" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="reduction" name="Reduction %" fill="#0f6b64" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

@@ -8,7 +8,7 @@ import {
 } from 'recharts';
 
 const fmt = n => Number(n || 0).toLocaleString(undefined, { maximumFractionDigits: 2 });
-const COLORS = ['#00c896', '#3b82f6', '#f59e0b', '#ef4444', '#8b5cf6'];
+const COLORS = ['#0f6b64', '#ff6f59', '#168077', '#f59e0b', '#3b82f6'];
 
 export default function FleetAllocation() {
   const navigate = useNavigate();
@@ -42,15 +42,15 @@ export default function FleetAllocation() {
     <div className="page-fleet">
       {/* Fleet KPI cards */}
       <div className="kpi-grid">
-        <div className="kpi-card" style={{ borderTopColor: '#00c896' }}>
-          <div className="kpi-icon" style={{ color: '#00c896' }}><Ship size={20} /></div>
+        <div className="kpi-card" style={{ borderTopColor: '#0f6b64' }}>
+          <div className="kpi-icon" style={{ color: '#0f6b64' }}><Ship size={20} /></div>
           <div className="kpi-body">
             <div className="kpi-value">{fp?.fleet_count}</div>
             <div className="kpi-label">Ships Selected</div>
           </div>
         </div>
-        <div className="kpi-card" style={{ borderTopColor: '#3b82f6' }}>
-          <div className="kpi-icon" style={{ color: '#3b82f6' }}><Package size={20} /></div>
+        <div className="kpi-card" style={{ borderTopColor: '#ff6f59' }}>
+          <div className="kpi-icon" style={{ color: '#ff6f59' }}><Package size={20} /></div>
           <div className="kpi-body">
             <div className="kpi-value">{fmt(fp?.cargo_tonnes)} <span className="kpi-unit">t</span></div>
             <div className="kpi-label">Total Cargo</div>
@@ -75,7 +75,7 @@ export default function FleetAllocation() {
             <div className="kpi-label">Fleet Total Fuel</div>
           </div>
         </div>
-        <div className="kpi-card" style={{ borderTopColor: '#10b981' }}>
+        <div className="kpi-card" style={{ borderTopColor: '#0f6b64' }}>
           <div className="kpi-body">
             <div className="kpi-value">{fmt(fp?.co2_kg)} <span className="kpi-unit">kg</span></div>
             <div className="kpi-label">Fleet CO₂</div>
@@ -115,11 +115,11 @@ export default function FleetAllocation() {
                   <td>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                       <div style={{
-                        flex: 1, height: 6, background: '#1e3448', borderRadius: 3, overflow: 'hidden',
+                        flex: 1, height: 6, background: '#e5ded3', borderRadius: 3, overflow: 'hidden',
                       }}>
                         <div style={{
                           width: `${s.utilization_percent}%`, height: '100%',
-                          background: s.utilization_percent > 80 ? '#00c896' : '#f59e0b',
+                          background: s.utilization_percent > 80 ? '#0f6b64' : '#ff6f59',
                           borderRadius: 3,
                         }} />
                       </div>
@@ -127,7 +127,7 @@ export default function FleetAllocation() {
                     </div>
                   </td>
                   <td>{s.fuel_litres?.toLocaleString()}</td>
-                  <td><span className="pill" style={{ color: '#00c896', borderColor: '#00c896' }}>Selected</span></td>
+                  <td><span className="pill" style={{ color: '#0f6b64', borderColor: '#0f6b64' }}>Selected</span></td>
                 </tr>
               ))}
             </tbody>
@@ -141,12 +141,12 @@ export default function FleetAllocation() {
         <p>Cargo assigned vs total capacity per ship.</p>
         <ResponsiveContainer width="100%" height={240}>
           <BarChart data={chartData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1e3448" />
-            <XAxis dataKey="name" tick={{ fill: '#8ea7b3', fontSize: 11 }} />
-            <YAxis tick={{ fill: '#8ea7b3', fontSize: 11 }} />
-            <Tooltip contentStyle={{ background: '#0d1f35', border: '1px solid #1e3448', borderRadius: 8 }} />
-            <Bar dataKey="cap"   name="Capacity (t)" fill="#1e3448" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="cargo" name="Cargo (t)"    fill="#00c896" radius={[4, 4, 0, 0]} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e5ded3" />
+            <XAxis dataKey="name" tick={{ fill: '#7d8e98', fontSize: 11 }} />
+            <YAxis tick={{ fill: '#7d8e98', fontSize: 11 }} />
+            <Tooltip contentStyle={{ background: '#fdfbf7', border: '1px solid #e5ded3', color: '#16242b', borderRadius: 8 }} />
+            <Bar dataKey="cap"   name="Capacity (t)" fill="#dcd4c7" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="cargo" name="Cargo (t)"    fill="#0f6b64" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

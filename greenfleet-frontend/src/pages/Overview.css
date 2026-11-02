@@ -11,7 +11,7 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  color: #10212d;
+  color: #16242b;
   font-family: 'Plus Jakarta Sans', Inter, -apple-system, sans-serif;
 }
 
@@ -33,14 +33,14 @@
   font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #10212d;
+  color: #16242b;
   margin: 0 0 3px;
   line-height: 1.2;
 }
 
 .q-header-subtitle {
   font-size: 13px;
-  color: #6a7f8e;
+  color: #687b87;
   margin: 0;
   font-weight: 500;
 }
@@ -56,48 +56,48 @@
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  background: #ffffff;
-  border: 1px solid #dce6eb;
+  background: #fdfbf7;
+  border: 1px solid #e0d8cb;
   border-radius: 999px;
   padding: 7px 15px;
   font-size: 12px;
   font-weight: 600;
-  color: #3b5060;
+  color: #455966;
   box-shadow: 0 2px 6px rgba(22, 52, 67, 0.04);
   cursor: pointer;
   transition: all 0.18s ease;
 }
 
 .q-date-pill:hover {
-  border-color: #08b887;
-  color: #10212d;
+  border-color: var(--accent-coral, #ff6f59);
+  color: var(--accent-coral, #ff6f59);
 }
 
 .q-date-icon {
-  color: #08b887;
+  color: #0f6b64;
 }
 
 .q-btn-add {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #ffffff;
-  border: 1px solid #dce6eb;
+  background: #fdfbf7;
+  border: 1px solid #e0d8cb;
   border-radius: 999px;
   padding: 7px 16px;
   font-size: 12px;
   font-weight: 700;
-  color: #10212d;
+  color: #16242b;
   box-shadow: 0 2px 6px rgba(22, 52, 67, 0.04);
   cursor: pointer;
   transition: all 0.18s ease;
 }
 
 .q-btn-add:hover {
-  background: #08b887;
-  border-color: #08b887;
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(8, 184, 135, 0.3);
+  background: #0f6b64;
+  border-color: #0f6b64;
+  color: #fdfbf7;
+  box-shadow: 0 4px 14px rgba(15, 107, 100, 0.3);
   transform: translateY(-1px);
 }
 
@@ -107,8 +107,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  background: #f0fdf9;
-  border: 1px solid rgba(8, 184, 135, 0.3);
+  background: #eef6f4;
+  border: 1px solid rgba(15, 107, 100, 0.3);
   border-radius: 12px;
   padding: 7px 16px;
   font-size: 12px;
@@ -124,8 +124,8 @@
 }
 
 .q-bb-badge {
-  background: #08b887;
-  color: #ffffff;
+  background: #0f6b64;
+  color: #fdfbf7;
   font-size: 9.5px;
   font-weight: 800;
   padding: 2px 7px;
@@ -136,12 +136,12 @@
 }
 
 .q-bb-text {
-  color: #1e3a47;
+  color: #20343e;
   font-size: 12px;
 }
 
 .q-bb-text strong {
-  color: #10212d;
+  color: #16242b;
 }
 
 .q-bb-action {
@@ -150,7 +150,7 @@
   gap: 4px;
   background: transparent;
   border: none;
-  color: #08b887;
+  color: var(--accent-coral, #ff6f59);
   font-size: 11.5px;
   font-weight: 750;
   cursor: pointer;
@@ -161,7 +161,7 @@
 }
 
 .q-bb-action:hover {
-  background: rgba(8, 184, 135, 0.1);
+  background: rgba(255, 111, 89, 0.12);
   transform: translateX(2px);
 }
 
@@ -211,12 +211,12 @@
 .q-card-title {
   font-size: 13px;
   font-weight: 750;
-  color: #10212d;
+  color: #16242b;
   letter-spacing: -0.01em;
 }
 
 .q-title-icon {
-  color: #08b887;
+  color: #0f6b64;
 }
 
 .q-icon-btn {
@@ -225,17 +225,17 @@
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  border: 1px solid #e2eaee;
-  background: #f7fbfc;
-  color: #6a7f8e;
+  border: 1px solid #ebe4d8;
+  background: #faf8f5;
+  color: #687b87;
   cursor: pointer;
   transition: all 0.18s ease;
 }
 
 .q-icon-btn:hover {
-  background: #08b887;
-  border-color: #08b887;
-  color: #ffffff;
+  background: #0f6b64;
+  border-color: #0f6b64;
+  color: #fdfbf7;
   transform: translate(1px, -1px);
 }
 
@@ -247,11 +247,11 @@
 
 .q-emerald-card {
   position: relative;
-  background: linear-gradient(135deg, #047857 0%, #08b887 55%, #0d9488 100%);
+  background: linear-gradient(135deg, #0a4b46 0%, #0f6b64 55%, #0d9488 100%);
   border-radius: 20px;
   padding: 20px 22px;
-  color: #ffffff;
-  box-shadow: 0 14px 32px rgba(8, 184, 135, 0.25);
+  color: #fdfbf7;
+  box-shadow: 0 14px 32px rgba(15, 107, 100, 0.25);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -262,7 +262,7 @@
 
 .q-emerald-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(8, 184, 135, 0.32);
+  box-shadow: 0 18px 40px rgba(15, 107, 100, 0.32);
 }
 
 .q-emerald-card::before {
@@ -309,7 +309,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #ffffff;
+  background: #fdfbf7;
   z-index: 2;
 }
 
@@ -350,7 +350,7 @@
   font-size: 26px;
   font-weight: 900;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: #fdfbf7;
   line-height: 1.1;
 }
 
@@ -393,8 +393,8 @@
 
 /* Quick Stat Card below Emerald Card */
 .q-quick-stat-card {
-  background: #ffffff;
-  border: 1px solid #e2eaee;
+  background: #fdfbf7;
+  border: 1px solid #ebe4d8;
   border-radius: 18px;
   padding: 15px 20px;
   margin-top: 14px;
@@ -411,7 +411,7 @@
 .q-qs-label {
   font-size: 11.5px;
   font-weight: 600;
-  color: #6a7f8e;
+  color: #687b87;
 }
 
 .q-badge-pill {
@@ -422,16 +422,16 @@
 }
 
 .q-badge-pill.green {
-  background: #ecfdf5;
-  color: #08b887;
-  border: 1px solid rgba(8, 184, 135, 0.25);
+  background: #e5f0ee;
+  color: #0f6b64;
+  border: 1px solid rgba(15, 107, 100, 0.25);
 }
 
 .q-qs-value {
   font-size: 21px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #10212d;
+  color: #16242b;
   margin-bottom: 2px;
   font-variant-numeric: tabular-nums;
 }
@@ -439,18 +439,18 @@
 .q-qs-unit {
   font-size: 13px;
   font-weight: 600;
-  color: #6a7f8e;
+  color: #687b87;
 }
 
 .q-qs-sub {
   font-size: 10.5px;
-  color: #80909b;
+  color: #7d8e98;
 }
 
 /* ── COLUMN 2: Fuel Consumption & Emissions ── */
 .q-col-chart {
-  background: #ffffff;
-  border: 1px solid #e2eaee;
+  background: #fdfbf7;
+  border: 1px solid #ebe4d8;
   border-radius: 20px;
   padding: 18px 22px 14px;
   box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
@@ -466,7 +466,7 @@
 
 .q-pill-toggle {
   display: inline-flex;
-  background: #eef7fa;
+  background: #f0ebe1;
   border-radius: 999px;
   padding: 3px;
   gap: 2px;
@@ -475,7 +475,7 @@
 .q-pill-toggle button {
   border: none;
   background: transparent;
-  color: #6a7f8e;
+  color: #687b87;
   font-size: 11px;
   font-weight: 700;
   padding: 4px 11px;
@@ -485,9 +485,9 @@
 }
 
 .q-pill-toggle button.active {
-  background: #08b887;
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(8, 184, 135, 0.28);
+  background: #0f6b64;
+  color: #fdfbf7;
+  box-shadow: 0 2px 8px rgba(15, 107, 100, 0.28);
 }
 
 .q-bar-chart-wrap {
@@ -502,13 +502,13 @@
   top: 6px;
   left: 10%;
   transform: translateX(-50%);
-  background: #08b887;
-  color: #ffffff;
+  background: #0f6b64;
+  color: #fdfbf7;
   font-size: 9.5px;
   font-weight: 800;
   padding: 3px 9px;
   border-radius: 999px;
-  box-shadow: 0 3px 10px rgba(8, 184, 135, 0.35);
+  box-shadow: 0 3px 10px rgba(15, 107, 100, 0.35);
   pointer-events: none;
   z-index: 5;
   white-space: nowrap;
@@ -525,13 +525,13 @@
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid #08b887;
+  border-top: 4px solid #0f6b64;
 }
 
 /* Tooltip Styling */
 .q-chart-tooltip {
-  background: #ffffff;
-  border: 1px solid #dce6eb;
+  background: #fdfbf7;
+  border: 1px solid #e0d8cb;
   border-radius: 12px;
   padding: 10px 14px;
   box-shadow: 0 8px 24px rgba(22, 52, 67, 0.12);
@@ -550,15 +550,15 @@
 
 .q-tooltip-title {
   font-weight: 800;
-  color: #10212d;
+  color: #16242b;
   font-size: 12.5px;
 }
 
 .q-tooltip-badge {
   font-size: 9px;
   font-weight: 750;
-  color: #08b887;
-  background: #ecfdf5;
+  color: #0f6b64;
+  background: #e5f0ee;
   padding: 1px 6px;
   border-radius: 999px;
 }
@@ -573,11 +573,11 @@
 }
 
 .q-tooltip-label {
-  color: #6a7f8e;
+  color: #687b87;
 }
 
 .q-tooltip-val.emerald {
-  color: #08b887;
+  color: #0f6b64;
   font-weight: 750;
 }
 
@@ -594,8 +594,8 @@
 }
 
 .q-wave-card {
-  background: #ffffff;
-  border: 1px solid #e2eaee;
+  background: #fdfbf7;
+  border: 1px solid #ebe4d8;
   border-radius: 18px;
   padding: 16px 20px 14px;
   box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
@@ -607,7 +607,7 @@
 
 .q-wave-stat-label {
   font-size: 11px;
-  color: #6a7f8e;
+  color: #687b87;
   font-weight: 600;
 }
 
@@ -615,7 +615,7 @@
   font-size: 24px;
   font-weight: 850;
   letter-spacing: -0.03em;
-  color: #10212d;
+  color: #16242b;
   line-height: 1.1;
   font-variant-numeric: tabular-nums;
 }
@@ -623,7 +623,7 @@
 .q-wave-unit {
   font-size: 12.5px;
   font-weight: 600;
-  color: #80909b;
+  color: #7d8e98;
 }
 
 .q-wave-chart-wrap {
@@ -652,32 +652,32 @@
 }
 
 .q-action-btn.primary {
-  background: #08b887;
-  color: #ffffff;
-  border: 1px solid #08b887;
-  box-shadow: 0 2px 8px rgba(8, 184, 135, 0.25);
+  background: #0f6b64;
+  color: #fdfbf7;
+  border: 1px solid #0f6b64;
+  box-shadow: 0 2px 8px rgba(15, 107, 100, 0.25);
 }
 
 .q-action-btn.primary:hover {
-  background: #079d74;
+  background: #0a4b46;
   transform: translateY(-1px);
 }
 
 .q-action-btn.secondary {
-  background: #f7fbfc;
-  color: #3b5060;
-  border: 1px solid #dce6eb;
+  background: #faf8f5;
+  color: #455966;
+  border: 1px solid #e0d8cb;
 }
 
 .q-action-btn.secondary:hover {
-  border-color: #08b887;
-  color: #08b887;
+  border-color: #0f6b64;
+  color: #0f6b64;
 }
 
 /* Environmental Score Card */
 .q-env-card {
-  background: #ffffff;
-  border: 1px solid #e2eaee;
+  background: #fdfbf7;
+  border: 1px solid #ebe4d8;
   border-radius: 18px;
   padding: 15px 20px;
   box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
@@ -689,12 +689,12 @@
   gap: 7px;
   font-size: 11.5px;
   font-weight: 700;
-  color: #6a7f8e;
+  color: #687b87;
   margin-bottom: 4px;
 }
 
 .q-env-icon {
-  color: #08b887;
+  color: #0f6b64;
 }
 
 .q-env-value-row {
@@ -708,13 +708,13 @@
   font-size: 24px;
   font-weight: 900;
   letter-spacing: -0.03em;
-  color: #10212d;
+  color: #16242b;
   font-variant-numeric: tabular-nums;
 }
 
 .q-env-num small {
   font-size: 12.5px;
-  color: #80909b;
+  color: #7d8e98;
   font-weight: 600;
 }
 
@@ -731,7 +731,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #80909b;
+  color: #7d8e98;
 }
 
 .q-fleet-chips {
@@ -741,25 +741,25 @@
 }
 
 .q-chip {
-  background: #eef7fa;
-  border: 1px solid #dce6eb;
+  background: #f0ebe1;
+  border: 1px solid #e0d8cb;
   border-radius: 999px;
   padding: 2px 8px;
   font-size: 10px;
   font-weight: 700;
-  color: #3b5060;
+  color: #455966;
 }
 
 .q-chip.plus {
-  background: #08b887;
-  color: #ffffff;
-  border-color: #08b887;
+  background: #0f6b64;
+  color: #fdfbf7;
+  border-color: #0f6b64;
 }
 
 /* ── Bottom Section: Recent Voyage Optimizations Table ── */
 .q-table-card {
-  background: #ffffff;
-  border: 1px solid #e2eaee;
+  background: #fdfbf7;
+  border: 1px solid #ebe4d8;
   border-radius: 20px;
   padding: 18px 22px;
   box-shadow: 0 4px 18px rgba(22, 52, 67, 0.05);
@@ -781,14 +781,14 @@
 .q-table-title {
   font-size: 15px;
   font-weight: 800;
-  color: #10212d;
+  color: #16242b;
   margin: 0 0 2px;
   letter-spacing: -0.02em;
 }
 
 .q-table-sub {
   font-size: 11.5px;
-  color: #6a7f8e;
+  color: #687b87;
   margin: 0;
 }
 
@@ -808,17 +808,17 @@
 .q-search-icon {
   position: absolute;
   left: 9px;
-  color: #80909b;
+  color: #7d8e98;
   pointer-events: none;
 }
 
 .q-search-box input {
-  background: #f7fbfc;
-  border: 1px solid #dce6eb;
+  background: #faf8f5;
+  border: 1px solid #e0d8cb;
   border-radius: 999px;
   padding: 5.5px 26px 5.5px 28px;
   font-size: 11px;
-  color: #10212d;
+  color: #16242b;
   outline: none;
   width: 190px;
   transition: all 0.18s ease;
@@ -826,9 +826,9 @@
 }
 
 .q-search-box input:focus {
-  background: #ffffff;
-  border-color: #08b887;
-  box-shadow: 0 0 0 2px rgba(8, 184, 135, 0.14);
+  background: #fdfbf7;
+  border-color: #0f6b64;
+  box-shadow: 0 0 0 2px rgba(15, 107, 100, 0.14);
   width: 220px;
 }
 
@@ -837,7 +837,7 @@
   right: 7px;
   background: transparent;
   border: none;
-  color: #80909b;
+  color: #7d8e98;
   cursor: pointer;
   display: grid;
   place-items: center;
@@ -845,13 +845,13 @@
 }
 
 .q-search-clear:hover {
-  color: #10212d;
+  color: #16242b;
 }
 
 .q-status-filter-pills {
   display: flex;
   gap: 2px;
-  background: #eef7fa;
+  background: #f0ebe1;
   padding: 2px;
   border-radius: 999px;
 }
@@ -859,7 +859,7 @@
 .q-filter-pill {
   border: none;
   background: transparent;
-  color: #6a7f8e;
+  color: #687b87;
   font-size: 10.5px;
   font-weight: 700;
   padding: 4px 9px;
@@ -869,8 +869,8 @@
 }
 
 .q-filter-pill.active {
-  background: #ffffff;
-  color: #10212d;
+  background: #fdfbf7;
+  color: #16242b;
   box-shadow: 0 2px 6px rgba(22, 52, 67, 0.08);
 }
 
@@ -891,7 +891,7 @@
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: #80909b;
+  color: #7d8e98;
   border-bottom: 1px solid #eef2f5;
   white-space: nowrap;
 }
@@ -899,7 +899,7 @@
 .q-table td {
   padding: 11px 12px;
   border-bottom: 1px solid #f4f7f9;
-  color: #10212d;
+  color: #16242b;
   white-space: nowrap;
   vertical-align: middle;
 }
@@ -914,7 +914,7 @@
 }
 
 .q-table-row-clickable:hover td {
-  background: #f7fbfc;
+  background: #faf8f5;
 }
 
 .q-route-cell {
@@ -930,8 +930,8 @@
 }
 
 .q-live-tag {
-  background: #08b887;
-  color: #ffffff;
+  background: #0f6b64;
+  color: #fdfbf7;
   font-size: 8px;
   font-weight: 800;
   padding: 1px 5px;
@@ -949,9 +949,9 @@
 }
 
 .q-route-icon-badge.emerald {
-  background: #ecfdf5;
-  color: #08b887;
-  border: 1px solid rgba(8, 184, 135, 0.25);
+  background: #e5f0ee;
+  color: #0f6b64;
+  border: 1px solid rgba(15, 107, 100, 0.25);
 }
 
 .q-route-icon-badge.cyan {
@@ -968,13 +968,13 @@
 
 .q-route-name {
   font-weight: 750;
-  color: #10212d;
+  color: #16242b;
   display: block;
 }
 
 .q-route-sub {
   font-size: 10.5px;
-  color: #80909b;
+  color: #7d8e98;
 }
 
 .q-tabular-num {
@@ -982,7 +982,7 @@
 }
 
 .q-fuel-type-sub {
-  color: #80909b;
+  color: #7d8e98;
   font-size: 11px;
 }
 
@@ -998,9 +998,9 @@
 }
 
 .q-status-chip.success {
-  background: #ecfdf5;
-  color: #08b887;
-  border: 1px solid rgba(8, 184, 135, 0.25);
+  background: #e5f0ee;
+  color: #0f6b64;
+  border: 1px solid rgba(15, 107, 100, 0.25);
 }
 
 .q-status-chip.info {
@@ -1030,7 +1030,7 @@
 
 .q-savings-tag {
   font-weight: 750;
-  color: #08b887;
+  color: #0f6b64;
 }
 
 /* Empty Table State */
@@ -1045,14 +1045,14 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  color: #6a7f8e;
+  color: #687b87;
   font-size: 12px;
 }
 
 .q-btn-clear-filter {
-  background: #ecfdf5;
-  border: 1px solid rgba(8, 184, 135, 0.3);
-  color: #08b887;
+  background: #e5f0ee;
+  border: 1px solid rgba(15, 107, 100, 0.3);
+  color: #0f6b64;
   font-weight: 700;
   border-radius: 999px;
   padding: 4px 12px;
@@ -1062,8 +1062,8 @@
 }
 
 .q-btn-clear-filter:hover {
-  background: #08b887;
-  color: #ffffff;
+  background: #0f6b64;
+  color: #fdfbf7;
 }
 
 /* ── Quick Navigation Pill Strip ── */
@@ -1078,21 +1078,21 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: #ffffff;
-  border: 1px solid #dce6eb;
+  background: #fdfbf7;
+  border: 1px solid #e0d8cb;
   border-radius: 999px;
   padding: 7px 14px;
   font-size: 11.5px;
   font-weight: 700;
-  color: #3b5060;
+  color: #455966;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(22, 52, 67, 0.03);
   transition: all 0.18s ease;
 }
 
 .q-nav-pill-btn:hover {
-  border-color: #08b887;
-  color: #08b887;
-  background: #f0fdf9;
+  border-color: var(--accent-coral, #ff6f59);
+  color: var(--accent-coral, #ff6f59);
+  background: #fff8f6;
   transform: translateY(-1px);
 }

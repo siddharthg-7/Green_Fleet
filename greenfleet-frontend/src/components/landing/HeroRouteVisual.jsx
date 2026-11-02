@@ -20,10 +20,10 @@ export default function HeroRouteVisual() {
       >
         <defs>
           <linearGradient id="routeArchedGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#08b887" stopOpacity="0.4" />
-            <stop offset="35%" stopColor="#15c7c4" stopOpacity="0.85" />
-            <stop offset="70%" stopColor="#08b887" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="#08b887" stopOpacity="0.5" />
+            <stop offset="0%" stopColor="#0f6b64" stopOpacity="0.4" />
+            <stop offset="40%" stopColor="#168077" stopOpacity="0.85" />
+            <stop offset="75%" stopColor="#0f6b64" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#ff6f59" stopOpacity="0.8" />
           </linearGradient>
 
           <filter id="routeGlowRestrained" x="-20%" y="-20%" width="140%" height="140%">
@@ -41,7 +41,7 @@ export default function HeroRouteVisual() {
         {/* Secondary subtle dashed line */}
         <path
           d="M 50 370 C 190 340, 290 200, 382 170 C 482 140, 572 210, 672 250"
-          stroke="#15c7c4"
+          stroke="#ff6f59"
           strokeWidth="1.6"
           strokeDasharray="5 7"
           strokeOpacity="0.4"
@@ -59,37 +59,37 @@ export default function HeroRouteVisual() {
 
         {/* Node 1: Origin (Mumbai) */}
         <g transform="translate(50, 360)" className="gfq-marker-origin">
-          <circle r="12" fill="#08b887" opacity="0.18" />
-          <circle r="4.5" fill="#08b887" stroke="#ffffff" strokeWidth="2.5" />
+          <circle r="12" fill="#0f6b64" opacity="0.18" />
+          <circle r="4.5" fill="#0f6b64" stroke="#fdfbf7" strokeWidth="2.5" />
           <g transform="translate(0, -24)">
-            <rect x="-30" y="0" width="60" height="20" rx="6" fill="#ffffff" stroke="#cddde4" strokeWidth="1" filter="url(#badgeShadow)" />
-            <text x="0" y="13.5" textAnchor="middle" fill="#10212d" fontSize="10" fontWeight="700" fontFamily="'Plus Jakarta Sans', sans-serif">Mumbai</text>
+            <rect x="-30" y="0" width="60" height="20" rx="6" fill="#fdfbf7" stroke="#dcd4c7" strokeWidth="1" filter="url(#badgeShadow)" />
+            <text x="0" y="13.5" textAnchor="middle" fill="#16242b" fontSize="10" fontWeight="700" fontFamily="'Plus Jakarta Sans', sans-serif">Mumbai</text>
           </g>
         </g>
 
         {/* Node 2: Ascending */}
         <g transform="translate(190, 295)">
-          <circle r="4" fill="#ffffff" stroke="#08b887" strokeWidth="2" />
+          <circle r="4" fill="#fdfbf7" stroke="#0f6b64" strokeWidth="2" />
         </g>
 
         {/* Node 3: Apex above vessel */}
         <g transform="translate(382, 160)">
-          <circle r="14" stroke="#08b887" strokeWidth="1" opacity="0.3" className="gfq-vessel-ping" />
-          <circle r="5" fill="#ffffff" stroke="#08b887" strokeWidth="2.5" />
+          <circle r="14" stroke="#ff6f59" strokeWidth="1" opacity="0.3" className="gfq-vessel-ping" />
+          <circle r="5" fill="#fdfbf7" stroke="#0f6b64" strokeWidth="2.5" />
         </g>
 
         {/* Node 4: Descending */}
         <g transform="translate(552, 195)">
-          <circle r="4" fill="#ffffff" stroke="#08b887" strokeWidth="2" />
+          <circle r="4" fill="#fdfbf7" stroke="#0f6b64" strokeWidth="2" />
         </g>
 
         {/* Node 5: Destination (Singapore) */}
         <g transform="translate(672, 240)" className="gfq-marker-dest">
-          <circle r="12" fill="#08b887" opacity="0.18" />
-          <circle r="4.5" fill="#08b887" stroke="#ffffff" strokeWidth="2.5" />
+          <circle r="12" fill="#0f6b64" opacity="0.18" />
+          <circle r="4.5" fill="#0f6b64" stroke="#fdfbf7" strokeWidth="2.5" />
           <g transform="translate(0, -24)">
-            <rect x="-35" y="0" width="70" height="20" rx="6" fill="#ffffff" stroke="#cddde4" strokeWidth="1" filter="url(#badgeShadow)" />
-            <text x="0" y="13.5" textAnchor="middle" fill="#10212d" fontSize="10" fontWeight="700" fontFamily="'Plus Jakarta Sans', sans-serif">Singapore</text>
+            <rect x="-35" y="0" width="70" height="20" rx="6" fill="#fdfbf7" stroke="#dcd4c7" strokeWidth="1" filter="url(#badgeShadow)" />
+            <text x="0" y="13.5" textAnchor="middle" fill="#16242b" fontSize="10" fontWeight="700" fontFamily="'Plus Jakarta Sans', sans-serif">Singapore</text>
           </g>
         </g>
       </svg>
@@ -130,7 +130,7 @@ export default function HeroRouteVisual() {
           <span className="gfq-card-value">−12.8%</span>
           <div className="gfq-card-spark-line" aria-hidden="true">
             <svg viewBox="0 0 38 16" width="38" height="16">
-              <path d="M 0 13 Q 10 2, 20 10 T 38 4" fill="none" stroke="#08b887" strokeWidth="2.2" />
+              <path d="M 0 13 Q 10 2, 20 10 T 38 4" fill="none" stroke="#0f6b64" strokeWidth="2.2" />
             </svg>
           </div>
         </div>
@@ -150,7 +150,7 @@ export default function HeroRouteVisual() {
           </span>
           <div className="gfq-card-spark-curve" aria-hidden="true">
             <svg viewBox="0 0 35 14" width="35" height="14">
-              <path d="M 0 12 C 12 12, 18 3, 35 2" fill="none" stroke="#08b887" strokeWidth="2.2" />
+              <path d="M 0 12 C 12 12, 18 3, 35 2" fill="none" stroke="#0f6b64" strokeWidth="2.2" />
             </svg>
           </div>
         </div>
@@ -167,9 +167,9 @@ export default function HeroRouteVisual() {
         <div className="gfq-card-body">
           <span className="gfq-card-value">2 evaluated</span>
           <div className="gfq-card-spark-bars" aria-hidden="true">
-            <span style={{ height: '45%', background: '#08b887' }} />
-            <span style={{ height: '75%', background: '#08b887' }} />
-            <span style={{ height: '100%', background: '#08b887' }} />
+            <span style={{ height: '45%', background: '#0f6b64' }} />
+            <span style={{ height: '75%', background: '#0f6b64' }} />
+            <span style={{ height: '100%', background: '#0f6b64' }} />
           </div>
         </div>
         <span className="gfq-card-sublabel">cleaner + faster routes</span>

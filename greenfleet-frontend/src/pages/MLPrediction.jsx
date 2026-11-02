@@ -169,12 +169,12 @@ export default function MLPrediction() {
               {/* Chart */}
               <ResponsiveContainer width="100%" height={260} style={{ marginTop: 20 }}>
                 <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e3448" />
-                  <XAxis dataKey="name" tick={{ fill: '#8ea7b3', fontSize: 11 }} />
-                  <YAxis tick={{ fill: '#8ea7b3', fontSize: 11 }} />
-                  <Tooltip contentStyle={{ background: '#0d1f35', border: '1px solid #1e3448', borderRadius: 8 }} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5ded3" />
+                  <XAxis dataKey="name" tick={{ fill: '#7d8e98', fontSize: 11 }} />
+                  <YAxis tick={{ fill: '#7d8e98', fontSize: 11 }} />
+                  <Tooltip contentStyle={{ background: '#fdfbf7', border: '1px solid #e5ded3', color: '#16242b', borderRadius: 8 }} />
                   <Legend />
-                  <Bar dataKey="fuel" name="Predicted Fuel (L)" fill="#00c896" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="fuel" name="Predicted Fuel (L)" fill="#0f6b64" radius={[4, 4, 0, 0]} />
                   <Bar dataKey="co2"  name="CO₂ (kg)"           fill="#f59e0b" radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>

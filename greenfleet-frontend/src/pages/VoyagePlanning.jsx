@@ -44,7 +44,7 @@ export default function VoyagePlanning() {
             <div>
               <div className="eyebrow">VOYAGE ANALYSIS COMPLETE</div>
               <h2>
-                <CheckCircle2 size={20} style={{ color: '#00c896', marginRight: 8 }} />
+                <CheckCircle2 size={20} style={{ color: '#0f6b64', marginRight: 8 }} />
                 {result.origin?.port_name} → {result.destination?.port_name}
               </h2>
             </div>

@@ -68,8 +68,8 @@ export default function RouteAnalysis() {
             </div>
           </div>
           <div className="route-label-row">
-            <span style={{ color: '#1565c0', fontWeight: 700 }}>● R1: {r1.label}</span>
-            <span style={{ color: '#e65100', fontWeight: 700 }}>● R2: {r2.label}</span>
+            <span style={{ color: '#0f6b64', fontWeight: 700 }}>● R1: {r1.label}</span>
+            <span style={{ color: '#ff6f59', fontWeight: 700 }}>● R2: {r2.label}</span>
           </div>
           <div className="rm-grid">
             <RouteMetricCard label="Distance"       r1={r1.route?.distance_km}        r2={r2.route?.distance_km}        unit="km"  />

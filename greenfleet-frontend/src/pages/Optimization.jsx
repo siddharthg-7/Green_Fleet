@@ -123,13 +123,13 @@ export default function Optimization() {
         {/* Comparison chart */}
         <ResponsiveContainer width="100%" height={240} style={{ marginTop: 20 }}>
           <BarChart data={compData} margin={{ top: 4, right: 20, left: 0, bottom: 4 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1e3448" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e5ded3" />
             <XAxis dataKey="name" tick={{ fill: '#8ea7b3', fontSize: 11 }} />
             <YAxis tick={{ fill: '#8ea7b3', fontSize: 11 }} />
-            <Tooltip contentStyle={{ background: '#0d1f35', border: '1px solid #1e3448', borderRadius: 8 }} />
+            <Tooltip contentStyle={{ background: '#fdfbf7', border: '1px solid #e5ded3', color: '#16242b', borderRadius: 8 }} />
             <Legend />
-            <Bar dataKey="baseline" name="Baseline" fill="#4a7c8e" radius={[4, 4, 0, 0]} />
-            <Bar dataKey="qpso"     name="QPSO"     fill="#00c896" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="baseline" name="Baseline" fill="#8ca0a8" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="qpso"     name="QPSO"     fill="#0f6b64" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -152,7 +152,7 @@ export default function Optimization() {
           </div>
           <div className="savings-item">
             <span>Schedule Status</span>
-            <b className="savings-val" style={{ color: '#00c896' }}>On Time</b>
+            <b className="savings-val" style={{ color: '#0f6b64' }}>On Time</b>
           </div>
         </div>
       </div>

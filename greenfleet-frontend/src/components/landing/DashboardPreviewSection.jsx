@@ -103,47 +103,47 @@ export default function DashboardPreviewSection() {
                 <svg viewBox="0 0 360 210" className="gfq-preview-map-svg" fill="none">
                   <defs>
                     <linearGradient id="mapRouteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#08b887" />
-                      <stop offset="50%" stopColor="#15c7c4" />
-                      <stop offset="100%" stopColor="#08b887" />
+                      <stop offset="0%" stopColor="#0f6b64" />
+                      <stop offset="50%" stopColor="#168077" />
+                      <stop offset="100%" stopColor="#0f6b64" />
                     </linearGradient>
                   </defs>
 
                   {/* Daylight Ocean Background */}
-                  <rect width="360" height="210" fill="#eaf4f7" rx="8" />
+                  <rect width="360" height="210" fill="#f0ebe1" rx="8" />
 
                   {/* Simplified India Coastline silhouette */}
                   <path
                     d="M 20 0 L 80 0 L 95 30 L 115 80 L 130 130 L 145 155 L 140 170 L 130 180 L 125 150 L 105 105 L 80 50 L 40 25 Z"
-                    fill="#d7e8ee"
-                    stroke="#bad7e3"
+                    fill="#ded4c3"
+                    stroke="#cdc1ae"
                     strokeWidth="1"
                   />
                   {/* Sri Lanka */}
-                  <path d="M 148 165 C 153 162, 158 170, 152 178 C 146 178, 144 170, 148 165 Z" fill="#d7e8ee" stroke="#bad7e3" strokeWidth="1" />
+                  <path d="M 148 165 C 153 162, 158 170, 152 178 C 146 178, 144 170, 148 165 Z" fill="#ded4c3" stroke="#cdc1ae" strokeWidth="1" />
                   {/* Southeast Asia / Malacca */}
                   <path
                     d="M 270 20 L 290 50 L 310 110 L 320 160 L 330 190 L 350 200 L 360 210 L 360 0 Z"
-                    fill="#d7e8ee"
-                    stroke="#bad7e3"
+                    fill="#ded4c3"
+                    stroke="#cdc1ae"
                     strokeWidth="1"
                   />
                   {/* Sumatra */}
                   <path
                     d="M 220 175 L 250 150 L 290 190 L 320 210 L 260 210 Z"
-                    fill="#d7e8ee"
-                    stroke="#bad7e3"
+                    fill="#ded4c3"
+                    stroke="#cdc1ae"
                     strokeWidth="1"
                   />
 
                   {/* Ocean label */}
-                  <text x="140" y="105" fill="#6a8e9e" fontSize="9.5" letterSpacing="2" fontWeight="700">ARABIAN SEA</text>
-                  <text x="180" y="145" fill="#6a8e9e" fontSize="9.5" letterSpacing="2" fontWeight="700">BAY OF BENGAL</text>
+                  <text x="140" y="105" fill="#7d8e98" fontSize="9.5" letterSpacing="2" fontWeight="700">ARABIAN SEA</text>
+                  <text x="180" y="145" fill="#7d8e98" fontSize="9.5" letterSpacing="2" fontWeight="700">BAY OF BENGAL</text>
 
                   {/* Candidate Route B (Alternative - cyan dashed) */}
                   <path
                     d="M 95 35 C 80 80, 100 160, 148 190 C 190 205, 260 185, 325 185"
-                    stroke="#15c7c4"
+                    stroke="#ff6f59"
                     strokeWidth="1.8"
                     strokeDasharray="4 4"
                     opacity="0.8"
@@ -157,15 +157,15 @@ export default function DashboardPreviewSection() {
                   />
 
                   {/* Mumbai Port */}
-                  <circle cx="95" cy="35" r="4.5" fill="#08b887" stroke="#ffffff" strokeWidth="1.5" />
-                  <text x="103" y="38" fill="#10212d" fontSize="9.5" fontWeight="700">Mumbai</text>
+                  <circle cx="95" cy="35" r="4.5" fill="#0f6b64" stroke="#fdfbf7" strokeWidth="1.5" />
+                  <text x="103" y="38" fill="#16242b" fontSize="9.5" fontWeight="700">Mumbai</text>
 
                   {/* Mid Waypoint */}
-                  <circle cx="140" cy="172" r="3" fill="#15c7c4" stroke="#ffffff" strokeWidth="1" />
+                  <circle cx="140" cy="172" r="3" fill="#15c7c4" stroke="#fdfbf7" strokeWidth="1" />
 
                   {/* Singapore Port */}
-                  <circle cx="325" cy="185" r="4.5" fill="#08b887" stroke="#ffffff" strokeWidth="1.5" />
-                  <text x="274" y="198" fill="#10212d" fontSize="9.5" fontWeight="700">Singapore</text>
+                  <circle cx="325" cy="185" r="4.5" fill="#ff6f59" stroke="#fdfbf7" strokeWidth="1.5" />
+                  <text x="274" y="198" fill="#16242b" fontSize="9.5" fontWeight="700">Singapore</text>
                 </svg>
               </div>
 

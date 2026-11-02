@@ -13,8 +13,8 @@ L.Icon.Default.mergeOptions({
 
 /* ─── Colour palettes ────────────────────────────────────────────────────── */
 const ROUTE_PALETTES = {
-  R1: { base: '#1565c0', dim: '#5e92f3', glow: 'rgba(21,101,192,0.18)' },
-  R2: { base: '#e65100', dim: '#ffb74d', glow: 'rgba(230,81,0,0.18)' },
+  R1: { base: '#0f6b64', dim: '#358a83', glow: 'rgba(15,107,100,0.22)' },
+  R2: { base: '#ff6f59', dim: '#ff9a88', glow: 'rgba(255,111,89,0.22)' },
 };
 
 /** 5-stop heat colour ramp: blue → green → amber → orange → red */
@@ -36,7 +36,7 @@ function heatColorTraffic(v) {
   if (v >= 80) return '#4a148c';
   if (v >= 60) return '#880e4f';
   if (v >= 40) return '#c62828';
-  if (v >= 20) return '#e65100';
+  if (v >= 20) return '#ff6f59';
   return '#1565c0';
 }
 
@@ -65,7 +65,7 @@ const SEVERITY_COLOR = {
   severe:   { fill: '#d32f2f', label: '⚠️ Severe Storm', border: '#ff1744' },
   moderate: { fill: '#f57c00', label: '🌊 Rough Seas',   border: '#ff9100' },
   light:    { fill: '#f9a825', label: '🌬 Light Weather', border: '#ffc107' },
-  calm:     { fill: '#43a047', label: '✅ Calm',          border: '#66bb6a' },
+  calm:     { fill: '#0f6b64', label: '✅ Calm',          border: '#66bb6a' },
 };
 
 /* ─── Map auto-fit ───────────────────────────────────────────────────────── */
@@ -86,7 +86,7 @@ function portIcon(color, label) {
     iconAnchor: [11, 11],
     html: `<div style="
       width:22px;height:22px;border-radius:50%;
-      background:${color};border:3px solid #fff;
+      background:${color};border:3px solid #fdfbf7;
       box-shadow:0 2px 8px rgba(0,0,0,0.4);
       display:flex;align-items:center;justify-content:center;
       font-size:9px;font-weight:800;color:#fff;
@@ -113,7 +113,7 @@ function weatherIcon(sev) {
 /* ─── Legend ─────────────────────────────────────────────────────────────── */
 function HeatLegend({ layer }) {
   const stops = layer === 'traffic'
-    ? [['#1565c0','Sparse'],['#e65100','Moderate'],['#c62828','Dense'],['#880e4f','Heavy'],['#4a148c','Congested']]
+    ? [['#1565c0','Sparse'],['#ff6f59','Moderate'],['#c62828','Dense'],['#880e4f','Heavy'],['#4a148c','Congested']]
     : layer === 'delay'
     ? [['#0d47a1','None'],['#2e7d32','Low'],['#ff8f00','Moderate'],['#e64a19','High'],['#b71c1c','Severe']]
     : [['#1565c0','None'],['#558b2f','Low'],['#f9a825','Moderate'],['#ef6c00','High'],['#c62828','Severe']];
@@ -187,10 +187,10 @@ function SegmentTable({ route, layer }) {
                   <td>{seg.distance_km?.toFixed(1) ?? '—'}</td>
                   <td>{seg.marine?.wave_height ?? '—'}</td>
                   <td>{seg.marine?.wind_speed  ?? '—'}</td>
-                  <td style={{ color: seg.penalty?.fuel_penalty_percent > 5 ? '#e65100' : '#388e3c', fontWeight: 600 }}>
+                  <td style={{ color: seg.penalty?.fuel_penalty_percent > 5 ? '#ff6f59' : '#0f6b64', fontWeight: 600 }}>
                     +{seg.penalty?.fuel_penalty_percent?.toFixed(1) ?? 0}%
                   </td>
-                  <td style={{ color: seg.penalty?.time_penalty_hours > 1 ? '#e65100' : '#555' }}>
+                  <td style={{ color: seg.penalty?.time_penalty_hours > 1 ? '#ff6f59' : '#555' }}>
                     +{seg.penalty?.time_penalty_hours?.toFixed(1) ?? 0}h
                   </td>
                   <td>
@@ -392,7 +392,7 @@ Weather: ${wLabel}
                             </tbody>
                           </table>
                           {seg.penalty?.recommendation && (
-                            <div style={{ marginTop: 8, fontSize: 11, color: '#e65100', fontStyle: 'italic', borderTop: '1px solid #eee', paddingTop: 6 }}>
+                            <div style={{ marginTop: 8, fontSize: 11, color: '#ff6f59', fontStyle: 'italic', borderTop: '1px solid #eee', paddingTop: 6 }}>
                               💡 {seg.penalty.recommendation}
                             </div>
                           )}
@@ -443,7 +443,7 @@ Weather: ${wLabel}
                         <div style={{ fontSize: 12 }}>💨 Wind: <b>{seg.marine?.wind_speed ?? '—'} km/h</b></div>
                         <div style={{ fontSize: 12 }}>🌡 Env Score: <b>{seg.penalty?.environmental_score ?? '—'}/100</b></div>
                         {seg.penalty?.recommendation && (
-                          <div style={{ fontSize: 11, color: '#e65100', marginTop: 6, fontStyle: 'italic' }}>
+                          <div style={{ fontSize: 11, color: '#ff6f59', marginTop: 6, fontStyle: 'italic' }}>
                             💡 {seg.penalty.recommendation}
                           </div>
                         )}
@@ -470,9 +470,9 @@ Weather: ${wLabel}
                   {orig.lat.toFixed(4)}°N, {orig.lon.toFixed(4)}°E
                 </Popup>
               </Marker>
-              <Marker position={[dest.lat, dest.lon]} icon={portIcon('#e65100', 'D')} zIndexOffset={1000}>
+              <Marker position={[dest.lat, dest.lon]} icon={portIcon('#ff6f59', 'D')} zIndexOffset={1000}>
                 <Popup>
-                  <b style={{ color: '#e65100' }}>Destination Port</b><br />
+                  <b style={{ color: '#ff6f59' }}>Destination Port</b><br />
                   {dest.lat.toFixed(4)}°N, {dest.lon.toFixed(4)}°E
                 </Popup>
               </Marker>

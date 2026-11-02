@@ -375,7 +375,7 @@ export default function Overview() {
                 <XAxis
                   dataKey="name"
                   tick={{ fill: '#6a7f8e', fontSize: 11, fontWeight: 600 }}
-                  axisLine={{ stroke: '#e2eaee' }}
+                  axisLine={{ stroke: '#e5ded3' }}
                   tickLine={false}
                 />
                 <YAxis
@@ -385,7 +385,7 @@ export default function Overview() {
                   tickFormatter={val => `${Math.round(val / 1000)}k`}
                 />
                 <Tooltip
-                  cursor={{ fill: 'rgba(8, 184, 135, 0.04)' }}
+                  cursor={{ fill: 'rgba(15, 107, 100, 0.05)' }}
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       const d = payload[0].payload;
@@ -429,7 +429,7 @@ export default function Overview() {
                   {chartData.map((entry, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={entry.isBest ? '#08b887' : '#8cd4ba'}
+                      fill={entry.isBest ? '#0f6b64' : '#7bb6af'}
                     />
                   ))}
                 </Bar>
@@ -462,14 +462,13 @@ export default function Overview() {
                 <AreaChart data={speedWaveData} margin={{ top: 2, right: 0, left: 0, bottom: 0 }}>
                   <defs>
                     <linearGradient id="waveFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#08b887" stopOpacity={0.22} />
-                      <stop offset="100%" stopColor="#08b887" stopOpacity={0.0} />
+                      <stop offset="0%" stopColor="#0f6b64" stopOpacity={0.22} />
+                      <stop offset="100%" stopColor="#0f6b64" stopOpacity={0.0} />
                     </linearGradient>
                   </defs>
                   <Tooltip
                     contentStyle={{
-                      background: '#ffffff',
-                      border: '1px solid #dce6eb',
+                      background: '#fdfbf7', border: '1px solid #e5ded3',
                       borderRadius: '8px',
                       fontSize: '11px',
                       padding: '4px 8px'
@@ -479,7 +478,7 @@ export default function Overview() {
                   <Area
                     type="monotone"
                     dataKey="speed"
-                    stroke="#08b887"
+                    stroke="#0f6b64"
                     strokeWidth={2.2}
                     fillOpacity={1}
                     fill="url(#waveFill)"
